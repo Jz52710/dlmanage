@@ -15,7 +15,7 @@
           active-text-color="#ffd04b">
         <el-menu-item index="1" @click="list">
           <i class="el-icon-menu"></i>
-          <span slot="title">商品管理</span>
+          <span slot="title">菜单管理</span>
         </el-menu-item>
         <el-menu-item index="2" @click="user">
           <i class="el-icon-s-custom"></i>
@@ -25,13 +25,44 @@
     </el-aside>
     <el-container>
       <el-header>
+        <div class="cz-box">
+          <i class="el-icon-thumb czi"></i>
+          <span style="margin-right: 16px;" @click="centerDialogVisible = true" class="cz">操作指引</span>
+        </div>
+        <div class="exit-box">
           <i class="el-icon-switch-button"></i>
-          <span @click="quit">退出</span>
+          <span @click="quit" class="exit">退出</span>
+        </div>
       </el-header>
       <el-main>
         <router-view/>
       </el-main>
     </el-container>
+    <!--操作文档-->
+    <el-dialog
+        title="Boring Media积分管理系统"
+        :visible.sync="centerDialogVisible"
+        width="30%"
+        center>
+      <!--      <h3 style="text-align: center;line-height: 1.5">BoringMedia积分管理系统</h3>-->
+      <!--      <br>-->
+      <p>一、菜单管理</p>
+      <p>1.点击菜单管理进入菜单列表；</p>
+      <p>2.点击每一行的修改可以对菜单名称、积分、价格进行修改；</p>
+      <p>3.点击每一行的删除可以对该行菜单进行删除；</p>
+      <p>4.点击新增按钮，可以新增菜单。</p>
+      <br>
+      <p>二、用户管理</p>
+      <p>1.点击用户管理进入用户列表</p>
+      <p>2.点击每一行的修改可以对用户积分进行修改；</p>
+      <p>3.点击每一行的删除可以对该用户进行删除；</p>
+      <p>4.通过输入用户手机号->点击查询可查到该用户信息。</p>
+      <span slot="footer" class="dialog-footer">
+<!--    <el-button @click="centerDialogVisible = false">取 消</el-button>-->
+    <el-button type="primary" @click="centerDialogVisible = false">我已明白</el-button>
+  </span>
+    </el-dialog>
+
   </el-container>
 </template>
 
@@ -53,6 +84,7 @@ export default {
   },
   data(){
     return{
+      centerDialogVisible: false,
       image:require('@/assets/logo.png')
     }
   },
@@ -91,6 +123,8 @@ export default {
   font-size: 18px;
   border: 1px solid #ebeef5;
   box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .el-aside {
@@ -143,5 +177,16 @@ export default {
   height: 48px;
   margin-top: 2px;
 }
+.el-dialog p{
+  line-height: 1.5;
+  font-size: 1rem;
+}
+.cz-box:hover{
+  color: #66b1ff;
+}
+.exit-box:hover{
+  color: #66b1ff;
+}
+
 
 </style>
